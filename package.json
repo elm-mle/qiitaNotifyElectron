@@ -52,7 +52,7 @@
     "appId": "desktop-center-notify-qiita",
     "files": [
       "package.json",
-      "package-lock,json",
+      "package-lock.json",
       "build/main.js",
       "build/index.js",
       "build/index.html"

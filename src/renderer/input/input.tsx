@@ -1,18 +1,18 @@
 import {FC, useState} from "react";
-import {useRecoilState} from "recoil";
+import {SetterOrUpdater, useRecoilState} from "recoil";
 import {tagListState} from "../root";
-import ArticleClient from "../../main/client/article-client";
+import ArticleClient, {TagJsonModel} from "../../main/client/article-client";
 
-export const Input: FC = () => {
+export const Input: FC<{setTags: SetterOrUpdater<TagJsonModel[]>}> = (props) => {
 
     const [text, setText] = useState("");
-    const [tagList, setTagList]  = useRecoilState(tagListState)
+
     let client : ArticleClient|null = null
     //@ts-ignore
     client = window.client;
 
     const searchTagList = async (tagName: string) => client?.extractTagList(tagName)
-            .then(e => setTagList(_ => e))
+            .then(e => props.setTags(_ => e))
             .catch(e => console.log(e));
 
     return (
@@ -20,7 +20,10 @@ export const Input: FC = () => {
             <input type={"text"}
                    value={text}
                    onChange={(text) =>setText(_=> text.target.value)}/>
-            <button onClick={() => searchTagList(text)}>検索</button>
+            <button onClick={() => {
+
+                searchTagList(text)
+            }}>検索</button>
         </div>
     );
 }

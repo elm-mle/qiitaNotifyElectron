@@ -36,11 +36,11 @@ export const selectTagListState = atom<SelectedTagList>({
 const Root: FC = () => {
     const [selected] = useRecoilState(selectTagListState);
 
-    const tagList = useRecoilValue(stateChoice(selected));
+    const [tagList, setTagList] = useRecoilState(stateChoice(selected));
 
     return(
     <RecoilRoot>
-        <Input />
+        <Input setTags={setTagList}/>
         <TagList tags={tagList}/>
         <SideBar />
     </RecoilRoot>
