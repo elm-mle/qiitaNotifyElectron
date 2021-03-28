@@ -1,11 +1,12 @@
 // アプリケーション作成用のモジュールを読み込み
-import {app, BrowserWindow} from 'electron';
+import {app, BrowserWindow, dialog} from 'electron';
 import path from 'path';
 import { mainReloader, rendererReloader } from 'electron-hot-reload';
 
 
 const mainFile = path.join(app.getAppPath(), 'build', 'main.js');
 const rendererFile = path.join(app.getAppPath(), 'build', 'index.js');
+const preload = path.join(app.getAppPath(), 'build', 'preload.js');
 
 mainReloader(mainFile, undefined, (error, path) => {
     console.log("It is a main'AAs process hook!");
@@ -14,6 +15,11 @@ mainReloader(mainFile, undefined, (error, path) => {
 rendererReloader(rendererFile, undefined, (error, path) => {
     console.log("It is a renderer's process hook!");
 });
+
+rendererReloader(preload, undefined, () => {
+    console.log("preload");
+});
+
 
 
 const createWindow = () => {
