@@ -6,10 +6,16 @@ import {DBResult, IDatabaseOperator} from "./i-tag-database";
 export class MockTagDatabase implements IDatabaseOperator{
     private  readonly memory = new Map<string, TagModel>();
 
+    private constructor() {
+    }
+    static readonly  instance = new MockTagDatabase();
+
+
 
     add(tag: TagModel): DBResult{
         if(this.hasData(tag.id)) return 'DUPLICATE';
         this.memory.set(tag.id, tag);
+
         return 'SUCCESS';
     }
 
@@ -24,6 +30,7 @@ export class MockTagDatabase implements IDatabaseOperator{
 
         const models: TagModel[] = []
         this.memory.forEach(m => models.push(m));
+
         return models;
     }
 

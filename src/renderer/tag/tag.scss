@@ -1,0 +1,16 @@
+.tag{
+  width: 120px;
+  height: 80px;
+  font-size: 11px;
+  background-color: #dbdade;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  margin: 10px;
+}
+
+.tag:hover{
+  background-color: white;
+  cursor: grab;
+}

@@ -8,7 +8,7 @@ export abstract class Job{
     async runAsync(){
         const dateManager = new DateManager();
         while (true){
-            if(this.runMethod()){
+            if(await this.runMethodAsync()){
                 this.notify();
             }
 
@@ -16,6 +16,6 @@ export abstract class Job{
         }
     }
 
-    abstract runMethod(): boolean;
-    abstract notify(): void;
+    protected abstract runMethodAsync(): Promise<boolean>;
+    protected abstract notify(): void;
 }

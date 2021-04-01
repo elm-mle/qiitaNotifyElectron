@@ -1,9 +1,8 @@
-import {IMessageCreator} from "./message-creater";
-import {TagModel} from "../tag/tag-model";
+import {IMessenger} from "./messenger";
 import {dialog} from "electron";
-import {tagIdInfo, tagInfo} from "./message";
+import {tagIdInfo} from "./message";
 
-export class TagNotExistsError implements IMessageCreator{
+export class TagNotExistsError implements IMessenger{
 
     constructor(private tagId: string) {
     }

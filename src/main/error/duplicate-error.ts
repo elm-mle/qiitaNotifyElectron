@@ -1,14 +1,13 @@
-import {IMessageCreator} from "./message-creater";
+import {IMessenger} from "./messenger";
 import {dialog} from "electron";
-import {TagModel} from "../tag/tag-model";
-import {tagInfo} from "./message";
+import {tagIdInfo} from "./message";
 
-export class DuplicateError implements IMessageCreator{
+export class DuplicateError implements IMessenger{
 
-    constructor(private tag: TagModel) {
+    constructor(private tagId: string) {
     }
     showMessage(): void {
-        dialog.showErrorBox("このタグは既に存在します。", tagInfo(this.tag));
+        dialog.showErrorBox("このタグは既に存在します。", tagIdInfo(this.tagId));
     }
 
 }

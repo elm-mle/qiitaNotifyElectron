@@ -1,6 +1,6 @@
 export class DateManager{
 
-    sleepAsync = (hours:number) => new Promise(resolve => setTimeout(resolve, hours*1000));
+    sleepAsync = (hours:number) => new Promise(resolve => setTimeout(resolve, hours*1000*60*60));
 
     private static createHours(hoursTime: number): number{
         return hoursTime / (1000*60*60);
