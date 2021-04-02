@@ -7,6 +7,12 @@ export const selectDbTag: ()=>Promise<TagModel[]> = () =>  window.selectAll();
 //@ts-ignore
 export const addTag: (tagId: string) => Promise<void>  = (tagId) =>　window.addTag(tagId);
 
+//@ts-ignore
+export const appQuit: ()=>Promise<void> = window.appQuit;
+//@ts-ignore
+export const windowMax: ()=>Promise<void> = window.windowMax;
+//@ts-ignore
+export const windowMin: ()=>Promise<void> = window.windowMin;
 
 
 export type SWITCH_TAG_LIST_TYPE = "DB" | "NET";

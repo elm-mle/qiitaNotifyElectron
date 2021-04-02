@@ -1,0 +1,15 @@
+.icon-div{
+  -webkit-app-region: no-drag;
+  margin: 0 4px;
+  display: flex;
+  width: 70px;
+  justify-content: center;
+  align-items: center;
+}
+.icon-div:hover{
+  background-color: #ecdbdb;
+}
+.icon{
+  height: 20px;
+  width: 20px;
+}

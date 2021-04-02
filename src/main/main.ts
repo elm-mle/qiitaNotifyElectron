@@ -1,5 +1,5 @@
 // アプリケーション作成用のモジュールを読み込み
-import {app, BrowserWindow} from 'electron';
+import {app, BrowserWindow, ipcMain} from 'electron';
 import path from 'path';
 import {mainReloader, rendererReloader} from 'electron-hot-reload';
 import {QiitaArticleJob} from "./job/QiitaArticleJob";
@@ -22,10 +22,10 @@ rendererReloader(preload, undefined, () => {
 });
 
 
-
+let mainWindow : BrowserWindow;
 const createWindow = () => {
     // メインウィンドウを作成します
-    const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         titleBarStyle: "hidden",
         frame: false,
         webPreferences: {
@@ -40,6 +40,15 @@ const createWindow = () => {
     // デベロッパーツールの起動
     mainWindow.webContents.openDevTools();
 }
+export const miniumWindow = () => {
+    mainWindow.minimize();
+}
+
+export const maxWindow = () => {
+    mainWindow.maximize();
+}
+
+
 
 const job = new QiitaArticleJob(1);
 job.runAsync().catch(e => console.log(e));
@@ -53,5 +62,7 @@ app.on('window-all-closed', () => {
         app.quit();
     }
 });
+
+
 
 startJob();
